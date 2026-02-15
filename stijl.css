@@ -1,0 +1,37 @@
+:root {
+    --headerkleur: rgb(139, 128, 114);
+    --tekstkleur: rgb(32, 32, 32);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+    color: var(--tekstkleur);
+    font-family: 'SN Pro', serif;
+    font-size: 1.1rem;
+}
+
+p{
+  margin-bottom: 0.5em;
+}
+
+header {
+  margin-bottom: 1em;
+}
+
+header,
+footer {
+  background-color: var(--headerkleur);
+  box-shadow: 0 0 5px #999;
+}
+
+.wrapper {
+  max-width: 50em;
+  margin: 0px auto;
+  padding: 0.5em;
+}
