@@ -1,6 +1,10 @@
 :root {
     --headerkleur: rgb(139, 128, 114);
     --tekstkleur: rgb(32, 32, 32);
+    --kleuraccent1: #f1990c;
+    --kleuraccent2: rgb(43, 110, 12);
+    --afronding: 8px;
+
 }
 
 *{
@@ -34,4 +38,25 @@ footer {
   max-width: 50em;
   margin: 0px auto;
   padding: 0.5em;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  background-color: #fff;
+  padding: 1em 1em 0.5em 1em;  /* 0.5 voor bottom want elk inputfield heeft margin bottom*/
+  border-radius: var(--afronding);
+}
+
+input{
+  padding: 5px;
+  margin-bottom: 1.5em;
+}
+
+input[type=checkbox] {
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  accent-color: var(--kleuraccent2);
 }
