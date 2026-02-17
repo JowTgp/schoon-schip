@@ -1,15 +1,17 @@
-export const basisRecepten = [
+export const basisBereidingen = [
 {
     titel: 'tomatensaus',
     ingredienten: 'tomaat',
-    techniek: 'bewaartechniek',
-    bereiding: 'snij de tomaat'
+    bereiding: 'snij de tomaat',
+    techniek: 'bewaartechniek'
 },
 {
     titel: 'courgettesoep',
     ingredienten: 'courgette',
-    techniek: 'recept',
-    bereiding: 'kook de courgette'
+    bereiding: 'kook de courgette',
+    techniek: 'recept'
 }
 ]; 
+
+
 console.log('test module');
