@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="stijl.css">
 
-    <script src="script.js" type="module"></script>
+    <script src="add.js" type="module"></script>
 
 
 </head>
@@ -33,8 +33,19 @@
     
     <div class="wrapper">
         <h1>Moestuin Overload</h1>
-
-        
+        <h2>Voeg toe</h2>
+        <form class="add">
+            <label for="titel">Titel</label>
+            <input type="text" id="titel">
+            <label for="ingredienten"></label>
+            <input type="text" id="ingredienten">
+            <label for="techniek"></label>
+            <input type="text" id="techniek">
+            <label for="bereiding"></label>
+            <input type="text" id="bereiding">
+            <input type="submit" value="Voeg toe">
+        </form>
+        <div is="feedback"></div>
 
     </div>
 </body>

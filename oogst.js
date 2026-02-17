@@ -2,14 +2,14 @@ export const basisBereidingen = [
 {
     titel: 'tomatensaus',
     ingredienten: 'tomaat',
-    bereiding: 'snij de tomaat',
-    techniek: 'bewaartechniek'
+    techniek: 'bewaartechniek',
+    bereiding: 'snij de tomaat'
 },
 {
     titel: 'courgettesoep',
     ingredienten: 'courgette',
-    bereiding: 'kook de courgette',
-    techniek: 'recept'
+    techniek: 'recept',
+    bereiding: 'kook de courgette'
 }
 ]; 
 
