@@ -4,6 +4,7 @@
     --kleuraccent1: #f1990c;
     --kleuraccent2: rgb(43, 110, 12);
     --afronding: 8px;
+    --BGC:rgb(238, 238, 238);
 
 }
 
@@ -14,7 +15,7 @@
 }
 
 body{
-    background-color: rgb(238, 238, 238);
+    background-color: var(--BGC);
     color: var(--tekstkleur);
     font-family: 'SN Pro', serif;
     font-size: 1.1rem;
@@ -38,6 +39,38 @@ footer {
   max-width: 50em;
   margin: 0px auto;
   padding: 0.5em;
+}
+
+header div.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+nav ul {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: end;
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.5em;
+  text-decoration: none;
+  color: var(--tekstkleur);
+  border-radius: var(--afronding);
+}
+
+nav ul li a:hover {
+  color: var(--tekstkkleur);
+  background-color: var(--kleuraccent1);
+}
+
+nav li.hier a {
+  background-color: var(--BGC);
+  color: var(--kleuraccent2);
 }
 
 form{
