@@ -16,8 +16,22 @@ oogstVerwerking.innerHTML =`
     oogstVerwerking.classList.add(`${ter.techniek}`);
 
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
-}
+};
 
+const zoekVeld = document.querySelector('form.zoektekst>input').value;
+console.log(zoekVeld);
+
+function toonBereidingen() {
+    alleBereidingen.forEach((her) => {
+        if(her.bereiding.includes('const zoekVeld')){
+            voegBereidingToe(her);
+        }
+        })
+    };
+    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen());
+    
+
+basisBereidingen.forEach(voegBereidingToe);
 alleBereidingen.forEach(voegBereidingToe);
 
 
