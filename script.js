@@ -3,6 +3,7 @@ let alleBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) 
 
 console.log('test');
 
+
 const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
 /*const update = new CustomEvent ('lijstUpdate');*/
@@ -18,21 +19,22 @@ oogstVerwerking.innerHTML =`
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };
 
-const zoekVeld = document.querySelector('form.zoektekst>input').value;
-console.log(zoekVeld);
-
-function toonBereidingen() {
-    alleBereidingen.forEach((her) => {
-        if(her.bereiding.includes('const zoekVeld')){
-            voegBereidingToe(her);
-        }
-        })
-    };
-    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen());
-    
-
 basisBereidingen.forEach(voegBereidingToe);
 alleBereidingen.forEach(voegBereidingToe);
+
+function toonBereidingen() {
+    const zoekVeld = document.querySelector('form.zoektekst>input').value;
+    console.log(zoekVeld);
+    bereidingenSectie.innerHTML = '';
+    basisBereidingen.forEach((her) => {
+        if(her.bereiding.includes(zoekVeld)){
+            voegBereidingToe(her);
+        }
+        });
+    };
+    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
+    
+
 
 
 

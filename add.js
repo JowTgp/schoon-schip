@@ -18,5 +18,6 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
     alleBereidingen.push(nieuweBereiding);
    
    localStorage.setItem('opgeslagenBereidingen', JSON.stringify(alleBereidingen));
+  
 });
 

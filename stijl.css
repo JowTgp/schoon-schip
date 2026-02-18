@@ -57,6 +57,7 @@ nav ul {
   flex-direction: row;
   list-style-type: none;
   justify-content: end;
+  
 }
 
 nav ul li a {
@@ -65,6 +66,7 @@ nav ul li a {
   text-decoration: none;
   color: var(--tekstkleur);
   border-radius: var(--afronding);
+  
 }
 
 nav ul li a:hover {
