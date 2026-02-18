@@ -12,7 +12,7 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
     const nieuweBereiding = {
         titel: document.querySelector('#titel').value,
         ingredienten: document.querySelector('#ingredienten').value,
-        techniek: document.querySelector('#techniek').value,
+        techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
     };
     alleBereidingen.push(nieuweBereiding);

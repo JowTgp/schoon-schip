@@ -1,7 +1,7 @@
 :root {
     --headerkleur: rgb(139, 128, 114);
     --tekstkleur: rgb(32, 32, 32);
-    --kleuraccent1: #f1990c;
+    --kleuraccent1: rgb(241, 153, 12);
     --kleuraccent2: rgb(43, 110, 12);
     --afronding: 8px;
     --BGC:rgb(238, 238, 238);
@@ -47,6 +47,10 @@ header div.wrapper {
   justify-content: space-between;
 }
 
+h2{
+  margin-bottom: 0.8rem;
+}
+
 nav ul {
   display: flex;
   gap: 0.5em;
@@ -64,7 +68,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: var(--tekstkkleur);
+  color: var(--tekstkleur);
   background-color: var(--kleuraccent1);
 }
 
@@ -92,7 +96,15 @@ input[type=checkbox] {
   margin-right: 0.5em;
   margin-bottom: 1em;
   accent-color: var(--kleuraccent2);
+  cursor: pointer;
 }
 
-
-
+.bereidingen article{
+  background-color: #fff;
+  padding: 1em;
+  border-radius: var(--afronding);
+  margin-bottom: 1em;
+  
+  
+  box-shadow: 0 0 3px #999;
+}
