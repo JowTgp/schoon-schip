@@ -1,12 +1,20 @@
 import {basisBereidingen} from "./oogst.js";
-let alleBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
+let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
-console.log('test');
 
 
 const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
 /*const update = new CustomEvent ('lijstUpdate');*/
+
+/* constante of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
+
+function alleBereidingen(lijst) {
+    bereidingenSectie.innerHTML = "";
+    lijst.forEach(voegBeredingToe);
+}
+alleBereidingen(geefAlleBereidingen());*/
+
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
@@ -20,17 +28,20 @@ bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };
 
 basisBereidingen.forEach(voegBereidingToe);
-alleBereidingen.forEach(voegBereidingToe);
+toegevoegdeBereidingen.forEach(voegBereidingToe);
 
 function toonBereidingen() {
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
-    console.log(zoekVeld);
     bereidingenSectie.innerHTML = '';
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld)){
             voegBereidingToe(her);
-        }
-        });
+        }})
+        ||
+    toegevoegdeBereidingen.forEach((her) => {
+        if(her.bereiding.includes(zoekVeld)){
+            voegBereidingToe(her);
+        }})
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
     

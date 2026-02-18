@@ -2,7 +2,7 @@ import { basisBereidingen } from "./oogst.js";
 
 //localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
 
-let alleBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
+let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
 
 document.querySelector('form.add').addEventListener('submit', (event) => {
@@ -15,9 +15,9 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
         techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
     };
-    alleBereidingen.push(nieuweBereiding);
+    toegevoegdeBereidingen.push(nieuweBereiding);
    
-   localStorage.setItem('opgeslagenBereidingen', JSON.stringify(alleBereidingen));
+   localStorage.setItem('opgeslagenBereidingen', JSON.stringify(toegevoegdeBereidingen));
   
 });
 
