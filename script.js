@@ -7,7 +7,7 @@ const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
 /*const update = new CustomEvent ('lijstUpdate');*/
 
-/* constante of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
+/* cons/let of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
 
 function alleBereidingen(lijst) {
     bereidingenSectie.innerHTML = "";
@@ -15,13 +15,31 @@ function alleBereidingen(lijst) {
 }
 alleBereidingen(geefAlleBereidingen());*/
 
+const checkboxes=document.querySelectorAll('input[name=techniek]');
+checkboxes.forEach((checkbox)=>{
+    checkbox.addEventListener('change', () => {
+        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
+    });
+});
+
+function maakTechniekenLijst() {
+    const alleTechnieken = []
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked){
+            alleTechnieken.push(checkbox.value);
+        }
+    });
+    return alleTechnieken;
+}
+
+bereidingenSectie.addEventListener('bereidingenUpdate', toonBereidingen);
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
 oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
-    <p>${ter.ingredienten}</p>
-    <p>${ter.bereiding}</p>`;
+    <p>Ingredienten: ${ter.ingredienten}</p>
+    <p>Bereiding: ${ter.bereiding}</p>`;
     oogstVerwerking.classList.add(`${ter.techniek}`);
 
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
@@ -31,17 +49,21 @@ basisBereidingen.forEach(voegBereidingToe);
 toegevoegdeBereidingen.forEach(voegBereidingToe);
 
 function toonBereidingen() {
+    const geselecteerdeTechnieken = maakTechniekenLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
     bereidingenSectie.innerHTML = '';
     basisBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld)){
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek)){
             voegBereidingToe(her);
-        }})
+        }
+        })
         ||
     toegevoegdeBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld)){
-            voegBereidingToe(her);
-        }})
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek))
+            {voegBereidingToe(her)};
+        });
+       
+    
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
     
@@ -69,3 +91,21 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
     event.preventDefault();
     voegToe();
 });*/
+
+/*
+function toonBereidingen() {
+    const zoekVeld = document.querySelector('form.zoektekst>input').value;
+    bereidingenSectie.innerHTML = '';
+    basisBereidingen.forEach((her) => {
+        if(her.bereiding.includes(zoekVeld)){}
+         })
+        ||
+    toegevoegdeBereidingen.forEach((her) => {
+        if(her.bereiding.includes(zoekVeld) )
+            {voegBereidingToe(her)};
+        });
+       
+    
+    };
+    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
+    */

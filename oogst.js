@@ -3,7 +3,7 @@ export const basisBereidingen = [
     titel: 'tomatensaus',
     ingredienten: 'tomaat',
     techniek: 'bewaartechniek',
-    bereiding: 'snij de tomaat'
+    bereiding: 'https://www.mooiemoestuin.nl/tomatensaus-2-0/'
 },
 {
     titel: 'courgettesoep',
