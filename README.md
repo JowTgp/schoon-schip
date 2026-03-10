@@ -9,7 +9,7 @@ Dit is een opdracht voor het vak frontend basis en moet aan volgende vereisten v
 - gebruik DOM manipulatie
 - Toon dat je functies kan defineren, zowel de 'function' notatie als de 'fat arrow' notatie
 - Er worden arrays en objecten gebruikt
-- Gebruik verschillende manieren om arrays te manipuleren (ordenen, filteren, teovoegen, ...)
+- Gebruik verschillende manieren om arrays te manipuleren (ordenen, filteren, toevoegen, ...)
 - Gebruik lussen of higher order functions om lussen te vervangen
 - Correct gerbuik van const en let
 - Er zijn minstens drie soorten events (EventListeners)

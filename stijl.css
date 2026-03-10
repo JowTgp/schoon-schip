@@ -47,6 +47,11 @@ header div.wrapper {
   justify-content: space-between;
 }
 
+header img {
+  width: 35px;
+  height: 35px;
+}
+
 h2{
   margin-bottom: 0.8rem;
 }
