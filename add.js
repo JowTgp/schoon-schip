@@ -8,13 +8,15 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
 document.querySelector('form.add').addEventListener('submit', (event) => {
     event.preventDefault();
 
+    const arrayMoestuinlabel=document.querySelector('#moestuinlabel').selectedOptions;
+    console.log(arrayMoestuinlabel);
 
     const nieuweBereiding = {
         titel: document.querySelector('#titel').value,
         ingredienten: document.querySelector('#ingredienten').value,
         techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
-        moestuinlabel: document.querySelector('select[name="moestuinlabel"]').value
+        moestuinlabel: arrayMoestuinlabel('HTMLCollection').value
     };
     toegevoegdeBereidingen.push(nieuweBereiding);
    

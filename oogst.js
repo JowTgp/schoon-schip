@@ -16,4 +16,3 @@ export const basisBereidingen = [
 ]; 
 
 
-console.log('test module');
