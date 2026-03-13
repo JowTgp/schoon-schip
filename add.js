@@ -8,7 +8,8 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
 document.querySelector('form.add').addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const arrayMoestuinlabel=document.querySelector('#moestuinlabel').selectedOptions;
+    /*const om meerdere classes-moestuinlabels toevoegen aan article -> zie ook mdn: HTML select element selectedOptions en HTML collection + spread syntax voor array apart te zetten(value van option in htmlcollection*/ 
+    const arrayMoestuinlabel=[...document.querySelector('#moestuinlabel').selectedOptions].map(option => option.value);
     console.log(arrayMoestuinlabel);
 
     const nieuweBereiding = {
@@ -16,8 +17,9 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
         ingredienten: document.querySelector('#ingredienten').value,
         techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
-        moestuinlabel: arrayMoestuinlabel('HTMLCollection').value
+        moestuinlabel: arrayMoestuinlabel
     };
+    console.log(nieuweBereiding);
     toegevoegdeBereidingen.push(nieuweBereiding);
    
    localStorage.setItem('opgeslagenBereidingen', JSON.stringify(toegevoegdeBereidingen));
