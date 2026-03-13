@@ -43,7 +43,10 @@ oogstVerwerking.innerHTML =`
     <p>Ingredienten: ${ter.ingredienten}</p>
     <p>Bereiding: ${ter.bereiding}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
-    oogstVerwerking.classList.add(ter.moestuinlabel);
+    ter.moestuinlabel.forEach(ml => {
+    oogstVerwerking.classList.add(ml)
+    })
+    ;
 
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };

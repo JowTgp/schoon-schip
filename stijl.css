@@ -141,3 +141,18 @@ background-image: url("/img/conserve.svg");
 .recept::after{
   background-image: url("/img/bestek.svg");
 }
+
+/*opmaak moestuinlabels*/
+
+select{
+  border: none;
+  margin-bottom: 5px;
+  
+}
+
+select > option{
+  border: solid 1px var(--tekstkleur);
+  padding: 5px;
+  margin-top: 3px;
+  margin-right: 2px;
+}
