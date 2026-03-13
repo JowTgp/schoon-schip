@@ -42,7 +42,8 @@ oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
     <p>Ingredienten: ${ter.ingredienten}</p>
     <p>Bereiding: ${ter.bereiding}</p>`;
-    oogstVerwerking.classList.add(`${ter.techniek}`);
+    oogstVerwerking.classList.add(ter.techniek);
+    oogstVerwerking.classList.add(ter.moestuinlabel);
 
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };
