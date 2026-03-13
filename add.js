@@ -14,6 +14,7 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
         ingredienten: document.querySelector('#ingredienten').value,
         techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
+        moestuinlabel: document.querySelector('select[name="moestuinlabel"]').value
     };
     toegevoegdeBereidingen.push(nieuweBereiding);
    
