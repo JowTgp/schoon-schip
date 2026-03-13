@@ -1,6 +1,6 @@
 :root {
     --headerkleur: rgb(139, 128, 114);
-    --tekstkleur: rgb(32, 32, 32);
+    --tekstkleur: #202020;
     --kleuraccent1: rgb(241, 153, 12);
     --kleuraccent2: rgb(43, 110, 12);
     --afronding: 8px;
@@ -118,4 +118,26 @@ input[type=checkbox], input[type=radio]{
   
   
   box-shadow: 0 0 3px #999;
+}
+
+
+article{
+  position: relative;
+}
+
+.recept::after,
+.bewaartechniek::after{
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+ background-size:cover;   /* hoe wordt de afbeeelding geschaald binnen het pseudoelement, schaalt de afbeelding zo groot mogelijk binnen het element zonder vervorming. */
+}
+.bewaartechniek::after{
+background-image: url("/img/conserve.svg");
+}
+.recept::after{
+  background-image: url("/img/bestek.svg");
 }
