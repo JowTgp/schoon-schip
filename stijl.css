@@ -142,22 +142,29 @@ background-image: url("img/conserve.svg");
 
 /*opmaak moestuinlabels*/
 
-select{
-  border: none;
+.moestuingroenten{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* border: 1px solid black; */
   margin-bottom: 5px;
   accent-color: var(--kleuraccent2);
-  width: 100%;
-  max-width: 100%;
-  height: 20rem;
+  padding: 5px;
+  margin: 8px;
 }
 
-select > option{
+.moestuingroenten span{
+  display: inline-block;               /* laten staan zodat label zich aanpast aan lengt woord*/
   border: solid 1px var(--tekstkleur);
-  padding: 5px;
-  margin-top: 3px;
-  margin-right: 2px;
-  max-width: 10rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: 0.2s;
+  cursor: pointer;
 }
-select > option:hover, select > option:checked{
+.moestuingroenten span:hover, .moestuingroenten input:checked + span{
   background-color:var(--kleuraccent1);
+}
+
+.moestuingroenten input[type=checkbox]{
+  display: none;
 }
