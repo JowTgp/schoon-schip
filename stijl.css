@@ -134,10 +134,10 @@ article{
  background-size:cover;   /* hoe wordt de afbeeelding geschaald binnen het pseudoelement, schaalt de afbeelding zo groot mogelijk binnen het element zonder vervorming. */
 }
 .bewaartechniek::after{
-background-image: url("/img/conserve.svg");
+background-image: url("img/conserve.svg");
 }
 .recept::after{
-  background-image: url("/img/bestek.svg");
+  background-image: url("img/bestek.svg");
 }
 
 /*opmaak moestuinlabels*/
