@@ -5,15 +5,6 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
 
 const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
-/*const update = new CustomEvent ('lijstUpdate');*/
-
-/* cons/let of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
-
-function alleBereidingen(lijst) {
-    bereidingenSectie.innerHTML = "";
-    lijst.forEach(voegBeredingToe);
-}
-alleBereidingen(geefAlleBereidingen());*/
 
 
 
@@ -23,15 +14,6 @@ checkboxes.forEach((checkbox)=>{
         bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
     });
 });
-
-const labels=document.querySelectorAll('input[name=labels]');
-console.log(labels);
-labels.forEach((label)=>{
-    label.addEventListener('change', () =>{
-        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
-    });
-});
-
 
 function maakTechniekenLijst() {
     const alleTechnieken = []
@@ -43,17 +25,24 @@ function maakTechniekenLijst() {
     return alleTechnieken;
 }
 
-function maakMoestuilabelsLijst() {
+const labels=[...document.querySelectorAll('input[name=labels]')];
+console.log(labels);
+labels.forEach((label)=>{
+    label.addEventListener('change', () =>{
+        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
+    });
+});
+
+
+function maakMoestuinlabelsLijst() {
     const alleMoestuinlabels = []
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked){
-            alleMoestuinlabels.push(checkbox.value);
+    labels.forEach((label) => {
+        if (label.checked){
+            alleMoestuinlabels.push(label.value);
         }
     });
     return alleMoestuinlabels;
-    
 }
-
 
 bereidingenSectie.addEventListener('bereidingenUpdate', toonBereidingen);
 
@@ -77,9 +66,21 @@ toegevoegdeBereidingen.forEach(voegBereidingToe);
 
 function toonBereidingen() {
     const geselecteerdeTechnieken = maakTechniekenLijst();
-    const geselecteerdeMoestuinlabels = maakMoestuilabelsLijst();
+    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
     bereidingenSectie.innerHTML = '';
+
+    const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
+    console.log(alleBereidingen);
+
+    alleBereidingen.forEach((her)=> {
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.lenght === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label))) {
+            voegBereidingToe(her);
+        }
+        });
+ document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
+    };
+/*
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
             voegBereidingToe(her);
@@ -94,9 +95,18 @@ function toonBereidingen() {
     
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
-    
+    */
 
 
+/*const update = new CustomEvent ('lijstUpdate');*/
+
+/* cons/let of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
+
+function alleBereidingen(lijst) {
+    bereidingenSectie.innerHTML = "";
+    lijst.forEach(voegBeredingToe);
+}
+alleBereidingen(geefAlleBereidingen());*/
 
 
 /*basisBereidingen.push(nieuweBereiding);                           nieuwe recept toevoegen */
