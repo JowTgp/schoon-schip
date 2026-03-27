@@ -24,6 +24,15 @@ checkboxes.forEach((checkbox)=>{
     });
 });
 
+const labels=document.querySelectorAll('input[name=labels]');
+console.log(labels);
+labels.forEach((label)=>{
+    label.addEventListener('change', () =>{
+        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
+    });
+});
+
+
 function maakTechniekenLijst() {
     const alleTechnieken = []
     checkboxes.forEach((checkbox) => {
@@ -33,6 +42,18 @@ function maakTechniekenLijst() {
     });
     return alleTechnieken;
 }
+
+function maakMoestuilabelsLijst() {
+    const alleMoestuinlabels = []
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked){
+            alleMoestuinlabels.push(checkbox.value);
+        }
+    });
+    return alleMoestuinlabels;
+    
+}
+
 
 bereidingenSectie.addEventListener('bereidingenUpdate', toonBereidingen);
 
@@ -56,16 +77,17 @@ toegevoegdeBereidingen.forEach(voegBereidingToe);
 
 function toonBereidingen() {
     const geselecteerdeTechnieken = maakTechniekenLijst();
+    const geselecteerdeMoestuinlabels = maakMoestuilabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
     bereidingenSectie.innerHTML = '';
     basisBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek)){
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
             voegBereidingToe(her);
         }
         })
         ||
     toegevoegdeBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek))
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel))
             {voegBereidingToe(her)};
         });
        
