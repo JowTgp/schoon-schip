@@ -74,12 +74,12 @@ function toonBereidingen() {
     console.log(alleBereidingen);
 
     alleBereidingen.forEach((her)=> {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.lenght === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label))) {
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
             voegBereidingToe(her);
         }
         });
- document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
     };
+    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
 /*
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
