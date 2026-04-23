@@ -181,7 +181,7 @@ section.bereidingen{
   grid-template-columns: 1fr;
 }
 
-@media(min-width: 800px) {
+@media(min-width: 776px) {
   section.bereidingen{
     grid-template-columns: 1fr 1fr;
   }
