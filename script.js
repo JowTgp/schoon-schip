@@ -33,6 +33,32 @@ labels.forEach((label)=>{
     });
 });
 
+/*Zoek meeste moestuinlabels (gedeelte alle bereidingen+zoekfunctie nog refactoren in een hulpfunctie? dry > hieronder idem stuk code)*/
+/*ook nog  aanpassen naar aangevinkte labels ipv totaal labels)*/
+function vindMeesteMoestuinlabels() {
+    const geselecteerdeTechnieken = maakTechniekenLijst();
+    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
+    const zoekVeld = document.querySelector('form.zoektekst>input').value;
+
+    const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
+
+    let meesteML = {moestuinlabel: []};
+
+    alleBereidingen.forEach((her)=> {
+        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
+            {
+                if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
+                    meesteML=her;
+                }
+            }
+        });
+        return meesteML;
+};
+function toonMeesteLabels() {
+    const besteMatch =vindMeesteMoestuinlabels();
+    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel} (${besteMatch.moestuinlabel.length})`;
+};
+/*einde meeste moestuinlabels*/
 
 function maakMoestuinlabelsLijst() {
     const alleMoestuinlabels = []
@@ -44,7 +70,10 @@ function maakMoestuinlabelsLijst() {
     return alleMoestuinlabels;
 }
 
-bereidingenSectie.addEventListener('bereidingenUpdate', toonBereidingen);
+bereidingenSectie.addEventListener('bereidingenUpdate', () => {
+    toonBereidingen();
+    toonMeesteLabels();
+});
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
@@ -80,6 +109,8 @@ function toonBereidingen() {
         });
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
+
+
 /*
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
