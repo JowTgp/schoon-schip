@@ -181,6 +181,18 @@ section.bereidingen{
   grid-template-columns: 1fr;
 }
 
+p.succes{
+  color: var(--kleuraccent2);
+  border: 1px solid var(--kleuraccent2);
+  padding: 5px;
+}
+p.fout{
+  color: var(--kleuraccent1);
+  border: 1px solid var(--kleuraccent1);
+  padding: 5px;
+}
+
+
 @media(min-width: 776px) {
   section.bereidingen{
     grid-template-columns: 1fr 1fr;

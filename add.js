@@ -16,7 +16,8 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
     };
     alleBereidingen.push(nieuweBereiding);*/
    
-    
+    document.querySelector('form.add').addEventListener('submit', (event) => {
+    event.preventDefault();   //om default van browser bij submit uit te schakelen, zie js info > events > browser default actions -> zelf actie in js gedefineerd dus default mag weg. Hier laten staan (voor const arrayMoestuinlabel), anders voegen moestuin labels zich niet toe als classes.
 
     /*const om meerdere classes-moestuinlabels toevoegen aan article -> zie ook mdn: HTML select element selectedOptions (niet werkte alleen bij select multiple bij checkboxes checked input gebruiken) en HTML collection + spread syntax voor array apart te zetten(value van option in htmlcollection*/ 
     const arrayMoestuinlabel=[...document.querySelectorAll(`.moestuinlabel input:checked`)].map(input => input.value);
@@ -37,12 +38,14 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
         moestuinlabel: arrayMoestuinlabel
     };
     console.log(nieuweBereiding);
+
+    if (nieuweBereiding.titel && nieuweBereiding.ingredienten && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel) {
     toegevoegdeBereidingen.push(nieuweBereiding);
     toonMelding('succes', 'Succesvol toegevoegd!');
+        } else {
+            toonMelding('fout', 'Niet toegevoegd: vul alle velden in.');
+        }
     }
-
-    document.querySelector('form.add').addEventListener('submit', (event) => {
-    event.preventDefault();   //om default van browser bij submit uit te schakelen, zie js info > events > browser default actions -> zelf actie in js gedefineerd dus default mag weg.
 
     voegToe();
    
