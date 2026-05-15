@@ -56,7 +56,7 @@ function vindMeesteMoestuinlabels() {
 };
 function toonMeesteLabels() {
     const besteMatch =vindMeesteMoestuinlabels();
-    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel} (${besteMatch.moestuinlabel.length})`;
+    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel} (${besteMatch.moestuinlabel.length} moestuinlabels)`;
 };
 /*einde meeste moestuinlabels*/
 
@@ -110,7 +110,30 @@ function toonBereidingen() {
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
 
+ /*Melding toegevoegd - foutmeliding - formvalidatie
+    function toonMelding (soort, melding){
+        document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
+    }
+    function voegToe() {
+    const nieuweBereiding = {
+        titel: document.querySelector('#titel').value,
+        ingredienten: document.querySelector('#ingredienten').value,
+        techniek: document.querySelector('input[name="techniek"]:checked')?.value,
+        bereiding: document.querySelector('#bereiding').value,
+        moestuinlabel: arrayMoestuinlabel
+    };
+    alleBereidingen.push(nieuweBereiding);
+    bereidingenSectie.dispatchEvent(bereidingenUpdate);
+    toonMelding('succes', 'Succesvol toegevoegd!');
+    }
 
+    document.querySelector('form.add').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    voegToe();*/
+
+
+    
 /*
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
