@@ -4,6 +4,7 @@ import { basisBereidingen } from "./oogst.js";
 
 let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
+const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
 
     //Melding toegevoegd - foutmeliding - formvalidatie
    
@@ -40,11 +41,18 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
     console.log(nieuweBereiding);
 
     if (nieuweBereiding.titel && nieuweBereiding.ingredienten && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel) {
-    toegevoegdeBereidingen.push(nieuweBereiding);
-    toonMelding('succes', 'Succesvol toegevoegd!');
+        const alleTitels = []
+        alleBereidingen.forEach((ber) => {alleTitels.push(ber.titel);});
+        console.log(alleTitels);
+        if (!alleTitels.includes(nieuweBereiding.titel)) {
+            toegevoegdeBereidingen.push(nieuweBereiding);
+            toonMelding('succes', 'Succesvol toegevoegd!');
         } else {
-            toonMelding('fout', 'Niet toegevoegd: vul alle velden in.');
+            toonMelding('fout', 'Titel bestaat al.');
         }
+    } else {
+            toonMelding('fout', 'Niet toegevoegd: vul alle velden in.');
+    }                   //evt nog een if else voorwaarde bvb min 1 ingredient? min lenght >
     }
 
     voegToe();

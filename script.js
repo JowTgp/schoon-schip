@@ -43,7 +43,7 @@ function vindMeesteMoestuinlabels() {
     const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
 
     let meesteML = {moestuinlabel: []};
-
+ 
     alleBereidingen.forEach((her)=> {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
             {
@@ -133,7 +133,7 @@ function toonBereidingen() {
     voegToe();*/
 
 
-    
+
 /*
     basisBereidingen.forEach((her) => {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
