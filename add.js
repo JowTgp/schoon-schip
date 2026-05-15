@@ -1,10 +1,15 @@
 import { basisBereidingen } from "./oogst.js";
 
+
 //localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
 
 let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
+function lijstAlleBereidingen() {
+    return [...basisBereidingen, ...toegevoegdeBereidingen];
+};
+const alleBereidingen = lijstAlleBereidingen();
+console.log(alleBereidingen);
 
-const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
 
     //Melding toegevoegd - foutmeliding - formvalidatie
    
@@ -46,6 +51,7 @@ const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
         console.log(alleTitels);
         if (!alleTitels.includes(nieuweBereiding.titel)) {
             toegevoegdeBereidingen.push(nieuweBereiding);
+            //hier nog update alle bereidingen, nu 2x zelfde titel als direct na elkaar (geen refresh) wel mogelijk, automatische update nodig > nog bekijken met local storage of hulpfunctie? bvb zelfde als in script.js en dan naar hulpfunctie doen.
             toonMelding('succes', 'Succesvol toegevoegd!');
         } else {
             toonMelding('fout', 'Titel bestaat al.');

@@ -6,12 +6,16 @@ let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidin
 const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
 
+const update = new CustomEvent('bereidingenUpdate');
 
+function lijstAlleBereidingen() {
+    return [...basisBereidingen, ...toegevoegdeBereidingen];
+};
 
 const checkboxes=document.querySelectorAll('input[name=techniek]');
 checkboxes.forEach((checkbox)=>{
     checkbox.addEventListener('change', () => {
-        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
+        bereidingenSectie.dispatchEvent(update);
     });
 });
 
@@ -29,7 +33,7 @@ const labels=[...document.querySelectorAll('input[name=labels]')];
 console.log(labels);
 labels.forEach((label)=>{
     label.addEventListener('change', () =>{
-        bereidingenSectie.dispatchEvent(new CustomEvent('bereidingenUpdate'));
+        bereidingenSectie.dispatchEvent(update);
     });
 });
 
@@ -40,7 +44,7 @@ function vindMeesteMoestuinlabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
 
-    const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
+    const alleBereidingen = lijstAlleBereidingen();
 
     let meesteML = {moestuinlabel: []};
  
@@ -99,7 +103,7 @@ function toonBereidingen() {
     const zoekVeld = document.querySelector('form.zoektekst>input').value;
     bereidingenSectie.innerHTML = '';
 
-    const alleBereidingen = [...basisBereidingen, ... toegevoegdeBereidingen];
+   const alleBereidingen = lijstAlleBereidingen();
     console.log(alleBereidingen);
 
     alleBereidingen.forEach((her)=> {
@@ -108,7 +112,9 @@ function toonBereidingen() {
         }
         });
     };
-    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
+    document.querySelector('form.zoektekst>input').addEventListener('input', () => {
+    bereidingenSectie.dispatchEvent(update);
+    });
 
  /*Melding toegevoegd - foutmeliding - formvalidatie
     function toonMelding (soort, melding){
