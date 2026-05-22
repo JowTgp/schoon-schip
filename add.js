@@ -10,6 +10,23 @@ function lijstAlleBereidingen() {
 const alleBereidingen = lijstAlleBereidingen();
 console.log(alleBereidingen);
 
+//ingredienten
+const knop = document.querySelector('#voegingrtoe');
+console.log(knop);
+const lijst = document.querySelector('#lijstingredienten');
+console.log(lijst);
+
+knop.addEventListener("click", () => {
+    const nieuwingr = document.createElement("input");
+
+    nieuwingr.type="text";
+    nieuwingr.name="ingredient";
+    //input.classList.add(""); in Css onder elkaar zetten
+
+    lijst.appendChild(nieuwingr);
+
+});
+
 
     //Melding toegevoegd - foutmeliding - formvalidatie
    
@@ -30,6 +47,15 @@ console.log(alleBereidingen);
     console.log(arrayMoestuinlabel);
     console.log(document.querySelectorAll('.moestuinlabel input:checked'));
 
+    const alleIngredienten = document.querySelectorAll(
+        'input[name="ingredient"]'
+    );
+    const arrayIngredienten = [];
+        alleIngredienten.forEach(input => {
+            arrayIngredienten.push(input.value);
+        });
+    //lege ingredienten nog bekijken hoe verwijderen in array + 
+
 
     function toonMelding (soort, melding){
         document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
@@ -38,7 +64,7 @@ console.log(alleBereidingen);
 
     const nieuweBereiding = {
         titel: document.querySelector('#titel').value,
-        ingredienten: document.querySelector('#ingredienten').value,
+        ingredienten: arrayIngredienten,
         techniek: document.querySelector('input[name="techniek"]:checked')?.value,
         bereiding: document.querySelector('#bereiding').value,
         moestuinlabel: arrayMoestuinlabel
