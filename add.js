@@ -52,9 +52,11 @@ knop.addEventListener("click", () => {
     );
     const arrayIngredienten = [];
         alleIngredienten.forEach(input => {
+            if(input.value.trim() !== ""){
             arrayIngredienten.push(input.value);
+            }
         });
-    //lege ingredienten nog bekijken hoe verwijderen in array + 
+    //lege ingredienten nog bekijken hoe verwijderen in array > .trim haalt spaties weg + voorwaarden if geen lege input pushen
 
 
     function toonMelding (soort, melding){
@@ -70,9 +72,10 @@ knop.addEventListener("click", () => {
         moestuinlabel: arrayMoestuinlabel
     };
     console.log(nieuweBereiding);
+    console.log(arrayIngredienten);
 
-    if (nieuweBereiding.titel && nieuweBereiding.ingredienten && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel) {
-        const alleTitels = []
+    if (nieuweBereiding.titel && nieuweBereiding.ingredienten.length>0 && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel.length>0) {
+        const alleTitels = []                                     //bij arrays .length>0 want anders truthy en dan ook ok als het leeg is: zie ook toegevoegd object in console
         alleBereidingen.forEach((ber) => {alleTitels.push(ber.titel);});
         console.log(alleTitels);
         if (!alleTitels.includes(nieuweBereiding.titel)) {
