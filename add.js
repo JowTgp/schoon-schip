@@ -3,7 +3,7 @@ import { basisBereidingen } from "./oogst.js";
 
 //localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
 
-let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
+let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || []; //als array toegevoegdeBereidingen is null > lege array gebruiken, anders foutmelding
 function lijstAlleBereidingen() {
     return [...basisBereidingen, ...toegevoegdeBereidingen];
 };
