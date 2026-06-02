@@ -81,10 +81,18 @@ bereidingenSectie.addEventListener('bereidingenUpdate', () => {
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
+
+let checkLink;
+if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
+    checkLink = `<a href="${ter.bereiding}">${ter.bereiding}</a>`;
+    }else{
+        checkLink = ter.bereiding;
+    }
+
 oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
     <p>Ingredienten: ${ter.ingredienten}</p>
-    <p>Bereiding: ${ter.bereiding}</p>`;
+    <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
     ter.moestuinlabel.forEach(ml => {
     oogstVerwerking.classList.add(ml)
