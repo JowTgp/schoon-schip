@@ -108,7 +108,7 @@ toegevoegdeBereidingen.forEach(voegBereidingToe);
 function toonBereidingen() {
     const geselecteerdeTechnieken = maakTechniekenLijst();
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
-    const zoekVeld = document.querySelector('form.zoektekst>input').value;
+    const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
     bereidingenSectie.innerHTML = '';
 
    const alleBereidingen = lijstAlleBereidingen();
