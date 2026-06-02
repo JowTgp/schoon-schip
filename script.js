@@ -29,7 +29,7 @@ function maakTechniekenLijst() {
     return alleTechnieken;
 }
 
-const labels=[...document.querySelectorAll('input[name=labels]')];
+const labels=document.querySelectorAll('input[name=labels]');
 console.log(labels);
 labels.forEach((label)=>{
     label.addEventListener('change', () =>{
