@@ -1,5 +1,6 @@
 import {basisBereidingen} from "./oogst.js";
 
+localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
@@ -10,14 +11,7 @@ console.log(bereidingenSectie);
 
 const update = new CustomEvent('bereidingenUpdate');
 
-/*
-function lijstAlleBereidingen() {
-    return [...basisBereidingen, ...toegevoegdeBereidingen];
-};
 
-const alleBereidingen = lijstAlleBereidingen();
-
-*/
 
 const checkboxes=document.querySelectorAll('input[name=techniek]');
 checkboxes.forEach((checkbox)=>{
@@ -134,6 +128,8 @@ function toonBereidingen() {
     bereidingenSectie.dispatchEvent(update);
     });
 
+    
+
  /*Melding toegevoegd - foutmeliding - formvalidatie
     function toonMelding (soort, melding){
         document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
@@ -225,3 +221,13 @@ function toonBereidingen() {
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
     */
+
+
+    /*
+function lijstAlleBereidingen() {
+    return [...basisBereidingen, ...toegevoegdeBereidingen];
+};
+
+const alleBereidingen = lijstAlleBereidingen();
+
+*/

@@ -4,7 +4,8 @@ localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
-/*let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || []; 
+
+/*let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || []; //als array opgeslagenBereidingen is null > lege array gebruiken, anders foutmelding
 function lijstAlleBereidingen() {
     return [...basisBereidingen, ...toegevoegdeBereidingen];
 };
@@ -15,7 +16,7 @@ weghalen + alleBEreidingen vervangen > 1 array vanaf begin maken
 
 */
 
-//als array toegevoegdeBereidingen is null > lege array gebruiken, anders foutmelding
+
 
 //ingredienten
 const knop = document.querySelector('#voegingrtoe');
@@ -77,6 +78,7 @@ knop.addEventListener("click", () => {
             bereidingen.push(nieuweBereiding);
             //hier nog update alle bereidingen, nu 2x zelfde titel als direct na elkaar (geen refresh) wel mogelijk, automatische update nodig > nog bekijken met local storage of hulpfunctie? bvb zelfde als in script.js en dan naar hulpfunctie doen.
             toonMelding('succes', 'Succesvol toegevoegd!');
+            localStorage.setItem('opgeslagenBereidingen', JSON.stringify(bereidingen));
         } else {
             toonMelding('fout', 'Titel bestaat al.');
         }
@@ -87,7 +89,7 @@ knop.addEventListener("click", () => {
 
     voegToe();
    
-   localStorage.setItem('opgeslagenBereidingen', JSON.stringify(bereidingen));
+  
   
 });
 
