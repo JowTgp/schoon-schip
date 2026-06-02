@@ -1,16 +1,23 @@
 import {basisBereidingen} from "./oogst.js";
-let toegevoegdeBereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
 
+let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
+
+console.log(bereidingen);
 
 const bereidingenSectie = document.querySelector('section.bereidingen');
 console.log(bereidingenSectie);
 
 const update = new CustomEvent('bereidingenUpdate');
 
+/*
 function lijstAlleBereidingen() {
     return [...basisBereidingen, ...toegevoegdeBereidingen];
 };
+
+const alleBereidingen = lijstAlleBereidingen();
+
+*/
 
 const checkboxes=document.querySelectorAll('input[name=techniek]');
 checkboxes.forEach((checkbox)=>{
@@ -44,11 +51,12 @@ function vindMeesteMoestuinlabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
 
-    const alleBereidingen = lijstAlleBereidingen();
+   // const alleBereidingen = lijstAlleBereidingen();
+    
 
     let meesteML = {moestuinlabel: []};
  
-    alleBereidingen.forEach((her)=> {
+    bereidingen.forEach((her)=> {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
             {
                 if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
@@ -102,8 +110,10 @@ oogstVerwerking.innerHTML =`
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };
 
-basisBereidingen.forEach(voegBereidingToe);
-toegevoegdeBereidingen.forEach(voegBereidingToe);
+bereidingen.forEach(voegBereidingToe);
+
+/*basisBereidingen.forEach(voegBereidingToe);
+toegevoegdeBereidingen.forEach(voegBereidingToe);*/
 
 function toonBereidingen() {
     const geselecteerdeTechnieken = maakTechniekenLijst();
@@ -111,10 +121,10 @@ function toonBereidingen() {
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
     bereidingenSectie.innerHTML = '';
 
-   const alleBereidingen = lijstAlleBereidingen();
-    console.log(alleBereidingen);
+  // const alleBereidingen = lijstAlleBereidingen();
+   
 
-    alleBereidingen.forEach((her)=> {
+    bereidingen.forEach((her)=> {
         if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
             voegBereidingToe(her);
         }
