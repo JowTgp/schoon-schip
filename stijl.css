@@ -181,6 +181,18 @@ section.bereidingen{
   grid-template-columns: 1fr;
 }
 
+button#voegingrtoe, input[type=submit]{
+  padding: 5px 1rem;
+  font-size: 1.1rem;
+  border-radius: var(--afronding);
+  max-width: fit-content;
+  margin-bottom: 1rem;
+}
+
+button#voegingrtoe:hover, input[type=submit]:hover{
+  cursor: pointer;
+}
+
 p.succes{
   color: var(--kleuraccent2);
   border: 1px solid var(--kleuraccent2);
