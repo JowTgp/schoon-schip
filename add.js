@@ -78,7 +78,7 @@ knop.addEventListener("click", () => {
             bereidingen.push(nieuweBereiding);
             //hier nog update alle bereidingen, nu 2x zelfde titel als direct na elkaar (geen refresh) wel mogelijk, automatische update nodig > nog bekijken met local storage of hulpfunctie? bvb zelfde als in script.js en dan naar hulpfunctie doen.
             toonMelding('succes', 'Succesvol toegevoegd!');
-            localStorage.setItem('opgeslagenBereidingen', JSON.stringify(bereidingen));
+            
         } else {
             toonMelding('fout', 'Titel bestaat al.');
         }
@@ -88,8 +88,9 @@ knop.addEventListener("click", () => {
     }
 
     voegToe();
+    localStorage.setItem('opgeslagenBereidingen', JSON.stringify(bereidingen));
    
-  
+  console.log(bereidingen);
   
 });
 

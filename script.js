@@ -1,6 +1,8 @@
 import {basisBereidingen} from "./oogst.js";
 
-localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
+/*localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
+
+console.log(basisBereidingen);*/
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
@@ -76,10 +78,6 @@ function maakMoestuinlabelsLijst() {
     return alleMoestuinlabels;
 }
 
-bereidingenSectie.addEventListener('bereidingenUpdate', () => {
-    toonBereidingen();
-    toonMeesteLabels();
-});
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
@@ -126,7 +124,17 @@ function toonBereidingen() {
     };
     document.querySelector('form.zoektekst>input').addEventListener('input', () => {
     bereidingenSectie.dispatchEvent(update);
+
     });
+
+    bereidingenSectie.addEventListener('bereidingenUpdate', JSON.parse(localStorage.getItem('opgeslagenBereidingen')));
+
+    
+    bereidingenSectie.addEventListener('bereidingenUpdate', () => {
+    toonBereidingen();
+    toonMeesteLabels();
+    
+});
 
     
 
