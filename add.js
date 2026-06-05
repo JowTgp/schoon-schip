@@ -1,6 +1,6 @@
 import { basisBereidingen } from "./oogst.js";
 
-localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
+localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));  //nog bekijken: als heen en weer add->index> terug naar add > dit overschrijft opnieuw local storage>toegevoegde bereiding terug weg. 1 keer inladen is genoeg >bvvb update ls aanpassen of bvb if niet lege array niet inladen else inladen?
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 

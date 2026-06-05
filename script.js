@@ -53,7 +53,7 @@ function vindMeesteMoestuinlabels() {
     let meesteML = {moestuinlabel: []};
  
     bereidingen.forEach((her)=> {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
+        if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
             {
                 if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
                     meesteML=her;
@@ -117,7 +117,7 @@ function toonBereidingen() {
    
 
     bereidingen.forEach((her)=> {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
+        if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
             voegBereidingToe(her);
         }
         });
@@ -127,7 +127,7 @@ function toonBereidingen() {
 
     });
 
-    bereidingenSectie.addEventListener('bereidingenUpdate', JSON.parse(localStorage.getItem('opgeslagenBereidingen')));
+    //bereidingenSectie.addEventListener('bereidingenUpdate', JSON.parse(localStorage.getItem('opgeslagenBereidingen')));
 
     
     bereidingenSectie.addEventListener('bereidingenUpdate', () => {
