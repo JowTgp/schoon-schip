@@ -197,15 +197,18 @@ p.succes{
   color: var(--kleuraccent2);
   border: 1px solid var(--kleuraccent2);
   padding: 5px;
-  background-color: var(--BGC);
+  background-color: #fff;
 }
 p.fout{
   color: var(--kleuraccent1);
   border: 1px solid var(--kleuraccent1);
   padding: 5px;
-  background-color: var(--BGC);
+  background-color: #fff;
 }
 
+.lijst{
+  display: block;
+}
 
 @media(min-width: 776px) {
   section.bereidingen{

@@ -47,15 +47,12 @@ function vindMeesteMoestuinlabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
 
-   // const alleBereidingen = lijstAlleBereidingen();
-    
-
     let meesteML = {moestuinlabel: []};
  
     bereidingen.forEach((her)=> {
         if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
             {
-                if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
+                if (her.moestuinlabel.length.checked > meesteML.moestuinlabel.length.checked) {
                     meesteML=her;
                 }
             }
@@ -66,7 +63,7 @@ function toonMeesteLabels() {
     const besteMatch =vindMeesteMoestuinlabels();
     document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel} (${besteMatch.moestuinlabel.length} moestuinlabels)`;
 };
-/*einde meeste moestuinlabels*/
+
 
 function maakMoestuinlabelsLijst() {
     const alleMoestuinlabels = []
@@ -77,7 +74,7 @@ function maakMoestuinlabelsLijst() {
     });
     return alleMoestuinlabels;
 }
-
+/*einde meeste moestuinlabels*/
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
@@ -91,7 +88,7 @@ if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereidi
 
 oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
-    <p>Ingredienten: ${ter.ingredienten}</p>
+    <p>Ingredienten: ${ter.ingredienten}</p> 
     <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
     ter.moestuinlabel.forEach(ml => {
@@ -136,106 +133,5 @@ function toonBereidingen() {
     
 });
 
-    
 
- /*Melding toegevoegd - foutmeliding - formvalidatie
-    function toonMelding (soort, melding){
-        document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
-    }
-    function voegToe() {
-    const nieuweBereiding = {
-        titel: document.querySelector('#titel').value,
-        ingredienten: document.querySelector('#ingredienten').value,
-        techniek: document.querySelector('input[name="techniek"]:checked')?.value,
-        bereiding: document.querySelector('#bereiding').value,
-        moestuinlabel: arrayMoestuinlabel
-    };
-    alleBereidingen.push(nieuweBereiding);
-    bereidingenSectie.dispatchEvent(bereidingenUpdate);
-    toonMelding('succes', 'Succesvol toegevoegd!');
-    }
-
-    document.querySelector('form.add').addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    voegToe();*/
-
-
-
-/*
-    basisBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel)){
-            voegBereidingToe(her);
-        }
-        })
-        ||
-    toegevoegdeBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld) && geselecteerdeTechnieken.includes(her.techniek) && geselecteerdeMoestuinlabels.includes(her.moestuinlabel))
-            {voegBereidingToe(her)};
-        });
-       
-    
-    };
-    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
-    */
-
-
-/*const update = new CustomEvent ('lijstUpdate');*/
-
-/* cons/let of function 'alleBereidingen' maken om basis + toegevoegde bereidingen samen te krijgen? > bvb met concat?zie jsinfo > array methods > transform > concat
-
-function alleBereidingen(lijst) {
-    bereidingenSectie.innerHTML = "";
-    lijst.forEach(voegBeredingToe);
-}
-alleBereidingen(geefAlleBereidingen());*/
-
-
-/*basisBereidingen.push(nieuweBereiding);                           nieuwe recept toevoegen */
-/*document.querySelector('section.bereidingen').innerHTML = '';     maakt section.bereidingen leeg*/
-/*voegBereidingToe('Pompoensoep', 'pompoen', 'recept', 'Mix de pompoen.');*/
-
-
-/*function voegToe() {
-    const nieuweBereiding = {
-        titel: document.querySelector('#titel').value,
-        ingredienten: document.querySelector('#ingredienten').value,
-        techniek: document.querySelector('#techniek').value,
-        bereiding: document.querySelector('#bereiding').value,
-    };
-    basisBereidingen.push(nieuweBereiding);
-   /* bereidingenSectie.dispatchEvent(update);
-};
-
-document.querySelector('form.add').addEventListener('submit', (event) => {
-    event.preventDefault();
-    voegToe();
-});*/
-
-/*
-function toonBereidingen() {
-    const zoekVeld = document.querySelector('form.zoektekst>input').value;
-    bereidingenSectie.innerHTML = '';
-    basisBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld)){}
-         })
-        ||
-    toegevoegdeBereidingen.forEach((her) => {
-        if(her.bereiding.includes(zoekVeld) )
-            {voegBereidingToe(her)};
-        });
-       
-    
-    };
-    document.querySelector('form.zoektekst>input').addEventListener('input', toonBereidingen);
-    */
-
-
-    /*
-function lijstAlleBereidingen() {
-    return [...basisBereidingen, ...toegevoegdeBereidingen];
-};
-
-const alleBereidingen = lijstAlleBereidingen();
-
-*/
+ 
