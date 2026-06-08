@@ -52,7 +52,7 @@ function vindMeesteMoestuinlabels() {
     bereidingen.forEach((her)=> {
         if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
             {
-                if (her.moestuinlabel.length.checked > meesteML.moestuinlabel.length.checked) {
+                if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
                     meesteML=her;
                 }
             }
