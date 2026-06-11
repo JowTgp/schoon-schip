@@ -1,10 +1,9 @@
 import { basisBereidingen } from "./oogst.js";
 
- if (localStorage !== []) {localStorage.getItem('opgeslagenBereidingen')
-    }
-   else {
-localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));  };
-
+if (!localStorage.getItem('opgeslagenBereidingen')) {
+    localStorage.setItem( 'opgeslagenBereidingen', JSON.stringify(basisBereidingen)
+    );
+}
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
@@ -71,6 +70,7 @@ knop.addEventListener("click", () => {
         bereiding: document.querySelector('#bereiding').value,
         moestuinlabel: arrayMoestuinlabel
     };
+    console.log(bereiding);
     console.log(nieuweBereiding);
     console.log(arrayIngredienten);
 

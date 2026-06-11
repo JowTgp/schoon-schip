@@ -203,10 +203,11 @@ button#voegingrtoe:hover, input[type=submit]:hover{
   cursor: pointer;
 }
 
-#bereiding{
+#bereiding, .ingredienten{
  color: var(--tekstkleur);
   font-family: 'SN Pro', serif;
   font-size: 1.1rem;
+  padding: 0.3rem;
 }
 
 p.succes{
