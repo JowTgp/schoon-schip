@@ -167,7 +167,7 @@ background-image: url("img/conserve.svg");
   transition: 0.2s;
   cursor: pointer;
 }
-.moestuingroenten span:hover, .moestuingroenten input:checked + span{
+/* .moestuingroenten span:hover,  */.moestuingroenten input:checked + span{
   background-color:var(--kleuraccent1);
 }
 
@@ -203,6 +203,12 @@ button#voegingrtoe:hover, input[type=submit]:hover{
   cursor: pointer;
 }
 
+#bereiding{
+ color: var(--tekstkleur);
+  font-family: 'SN Pro', serif;
+  font-size: 1.1rem;
+}
+
 p.succes{
   color: var(--kleuraccent2);
   border: 1px solid var(--kleuraccent2);
@@ -223,5 +229,8 @@ p.fout{
 @media(min-width: 776px) {
   section.bereidingen{
     grid-template-columns: 1fr 1fr;
+  }
+  .moestuingroenten span:hover{
+    background-color:var(--kleuraccent1);
   }
 }
