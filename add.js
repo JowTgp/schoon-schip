@@ -33,7 +33,7 @@ knop.addEventListener("click", () => {
 
     nieuwingr.type="text";
     nieuwingr.name="ingredient";
-   // input.classList.add("lijst");
+    nieuwingr.classList.add("ingredienten");
 
     lijst.appendChild(nieuwingr);
 

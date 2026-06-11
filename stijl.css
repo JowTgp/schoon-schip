@@ -175,6 +175,16 @@ background-image: url("img/conserve.svg");
   display: none;
 }
 
+#lijstingredienten{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ingredienten{
+  margin: 0.3rem;
+  width: 180px
+}
+
 section.bereidingen{
   display: grid;
   gap: 1em;
@@ -186,7 +196,7 @@ button#voegingrtoe, input[type=submit]{
   font-size: 1.1rem;
   border-radius: var(--afronding);
   max-width: fit-content;
-  margin-bottom: 1rem;
+  margin: 0.8rem;
 }
 
 button#voegingrtoe:hover, input[type=submit]:hover{
