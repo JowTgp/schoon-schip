@@ -5,6 +5,7 @@ if (!localStorage.getItem('opgeslagenBereidingen')) {
     );
 }
 
+
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
 
