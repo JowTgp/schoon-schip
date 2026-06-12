@@ -6,10 +6,7 @@ console.log(basisBereidingen);*/
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 
-console.log(bereidingen);
-
 const bereidingenSectie = document.querySelector('section.bereidingen');
-console.log(bereidingenSectie);
 
 const update = new CustomEvent('bereidingenUpdate');
 
@@ -88,7 +85,7 @@ if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereidi
 
 oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
-    <p>Ingredienten: ${ter.ingredienten}</p> 
+    <p>Ingredienten: ${ter.ingredienten.join(", ")}</p> 
     <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
     ter.moestuinlabel.forEach(ml => {
