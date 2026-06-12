@@ -38,6 +38,26 @@ labels.forEach((label)=>{
     });
 });
 
+// document.querySelector('#aantalingredienten').innerText += /* return van functie vindMinsteIngredienten*/ .length; 
+
+function vindMinsteIngredienten() {
+    let minsteIngredienten = bereidingen[0];
+
+    bereidingen.forEach((ber)=>{
+        if (ber.ingredienten.length < minsteIngredienten.ingredienten.length) {
+        minsteIngredienten = ber;
+        }
+         });
+    return minsteIngredienten;
+} 
+
+function toonMinsteIngredienten() {
+    const minsteIngr = vindMinsteIngredienten();
+    console.log(minsteIngr);
+
+    document.querySelector('#aantalingredienten').innerText += `${minsteIngr.titel} (${minsteIngr.ingredienten.length})`
+}
+
 /*Zoek meeste moestuinlabels (gedeelte alle bereidingen+zoekfunctie nog refactoren in een hulpfunctie? dry > hieronder idem stuk code)*/
 /*ook nog  aanpassen naar aangevinkte labels ipv totaal labels)*/
 function vindMeesteMoestuinlabels() {
@@ -78,7 +98,7 @@ function maakMoestuinlabelsLijst() {
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
 
-const lijsIngredienten = ter.ingredienten.map(ingr => `<li>${ingr}</li>`).join("");
+console.log(ter);
 
 let checkLink;
 if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
@@ -91,7 +111,7 @@ oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
     <p>Ingredienten: </p> 
     <ul class= "ingredientenlijst">
-    ${lijsIngredienten}
+    ${ter.ingredienten.map(ingr => `<li>${ingr}</li>`).join("")}
     </ul>
     <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
@@ -134,6 +154,7 @@ function toonBereidingen() {
     bereidingenSectie.addEventListener('bereidingenUpdate', () => {
     toonBereidingen();
     toonMeesteLabels();
+    toonMinsteIngredienten();
     
 });
 
