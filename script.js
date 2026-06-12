@@ -73,8 +73,10 @@ function maakMoestuinlabelsLijst() {
 }
 /*einde meeste moestuinlabels*/
 
+
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
+
 
 let checkLink;
 if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
@@ -85,7 +87,10 @@ if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereidi
 
 oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
-    <p>Ingredienten: ${ter.ingredienten.join(", ")}</p> 
+    <p>Ingredienten: </p> 
+    <ul class= "ingredientenlijst">
+    ${ter.ingredienten.map(ingr => `<li>${ingr}</li>`).join("")}
+    </ul>
     <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
     ter.moestuinlabel.forEach(ml => {
