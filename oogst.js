@@ -1,7 +1,7 @@
 export const basisBereidingen = [
 {
     titel: 'Tomatensaus',
-    ingredienten: ["2 kg tomaat", " 1 ajuin", " 3el olijfolie", " 1el honing"],
+    ingredienten: ["2 kg tomaat", " 1 ajuin", " 3el olijfolie", " 1el honing", "peper & zout"],
     techniek: 'bewaartechniek',
     moestuinlabel: ["tomaat"],
     bereiding: 'https://www.mooiemoestuin.nl/tomatensaus-2-0/'

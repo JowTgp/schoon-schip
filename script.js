@@ -78,6 +78,7 @@ function maakMoestuinlabelsLijst() {
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
 
+const lijsIngredienten = ter.ingredienten.map(ingr => `<li>${ingr}</li>`).join("");
 
 let checkLink;
 if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
@@ -90,7 +91,7 @@ oogstVerwerking.innerHTML =`
     <h2>${ter.titel}</h2>
     <p>Ingredienten: </p> 
     <ul class= "ingredientenlijst">
-    ${ter.ingredienten.map(ingr => `<li>${ingr}</li>`).join("")}
+    ${lijsIngredienten}
     </ul>
     <p>Bereiding: ${checkLink}</p>`;
     oogstVerwerking.classList.add(ter.techniek);
