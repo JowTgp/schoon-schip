@@ -1,8 +1,9 @@
 import {basisBereidingen} from "./oogst.js";
 
-/*localStorage.setItem('opgeslagenBereidingen', JSON.stringify(basisBereidingen));
-
-console.log(basisBereidingen);*/
+if (!localStorage.getItem('opgeslagenBereidingen')) {
+    localStorage.setItem( 'opgeslagenBereidingen', JSON.stringify(basisBereidingen)
+    );
+}
 
 let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [];
 

@@ -27,7 +27,9 @@ h1{
 
 p{
   margin-bottom: 0.5em;
-  margin-top: 0.6rem;
+}
+article>p{
+  margin-top: 0.7rem;
 }
 
 header {
@@ -58,7 +60,7 @@ header img {
 }
 
 h2{
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.7rem;
   margin-right: 40px; /* want width icoon is 38px plus 2px zodat geen overlap*/
 }
 
