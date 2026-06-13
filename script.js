@@ -50,11 +50,8 @@ function maakMoestuinlabelsLijst() {
 /*hulpfunctie filter*/
 function alleFilters (her) {
     const geselecteerdeTechnieken = maakTechniekenLijst();
-    console.log(geselecteerdeTechnieken);
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
-    console.log(geselecteerdeMoestuinlabels);
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
-    console.log(zoekVeld);
 
     return (
         (her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) 
@@ -88,15 +85,15 @@ function vindMeesteMoestuinlabels() {
     let meesteML = {moestuinlabel: []};
     console.log(meesteML);
     let vergelijkPunt = 0;
-    
+    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
  
     bereidingen.forEach((her)=> {
         if(alleFilters) 
             {
             const overeenkomst = her.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
-            console.log(overeenkomst);
+    
 
-            if (overeenkomst.length > vergelijkPunt.length) 
+            if (overeenkomst.length > vergelijkPunt) 
                 {   vergelijkPunt = overeenkomst.length;
                     meesteML=her;
                 }
@@ -105,10 +102,11 @@ function vindMeesteMoestuinlabels() {
         return meesteML;
 };
 function toonMeesteLabels() {
+    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const besteMatch =vindMeesteMoestuinlabels();
-    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel}, ${besteMatch.moestuinlabel.length} moestuinlabel(s)`;
+    console.log(besteMatch);
+    document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}.`;
 };
-
 
 
 /*einde meeste moestuinlabels*/
