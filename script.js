@@ -60,32 +60,31 @@ function alleFilters (her) {
     );
 }
 
-
+/*minste ingredienten*/
 function vindMinsteIngredienten() {
-    let minsteIngredienten = bereidingen[0];
-
+    let minsteIngredienten = {ingredienten: []};
+console.log(minsteIngredienten);
     bereidingen.forEach((ber)=>{
+        if (alleFilters(ber)){
         if (ber.ingredienten.length < minsteIngredienten.ingredienten.length) {
         minsteIngredienten = ber;
         }
-         });
+        
+        } });
     return minsteIngredienten;
 };
 
 function toonMinsteIngredienten() {
     const minsteIngr = vindMinsteIngredienten();
-
+    console.log(minsteIngr);
     document.querySelector('#aantalingredienten').innerText = `Bereiding met het minste aantal ingrediënten: ${minsteIngr.titel}, ${minsteIngr.ingredienten.length} ingrediënt(en)`
 };
 
-/*Zoek meeste moestuinlabels (gedeelte alle bereidingen+zoekfunctie nog refactoren in een hulpfunctie? dry > hieronder idem stuk code)*/
-/*ook nog  aanpassen naar aangevinkte labels ipv totaal labels)*/
+/*Zoek meeste moestuinlabels */
 function vindMeesteMoestuinlabels() {
 
     let meesteML = {moestuinlabel: []};
-    console.log(meesteML);
     let vergelijkPunt = 0;
-    let geenLabels = 0;
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
  
     bereidingen.forEach((her)=> {
@@ -93,7 +92,6 @@ function vindMeesteMoestuinlabels() {
             {
             const overeenkomst = her.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
     
-            if (overeenkomst.length === vergelijkPunt){geenLabels= -1}
             if(overeenkomst.length > vergelijkPunt) 
                 {   vergelijkPunt = overeenkomst.length;
                     meesteML=her;
@@ -119,11 +117,11 @@ function toonMeesteLabels() {
     if (geenML.length === 0 ){
             document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: er zijn geen recepten of bewaartechnieken met dit moestuinlabel.';
     }else{
-    document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}`;
+    document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) die overeen komen, nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}`;
     }
     }
 };
-
+//nog value omzetten naar inhoud span? bvb met .map? Zodat koppeltekens weg;
 
 /*einde meeste moestuinlabels*/
 

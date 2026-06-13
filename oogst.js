@@ -17,7 +17,7 @@ export const basisBereidingen = [
     titel: 'Udonnoedels met rodekool en bloemkool',
     ingredienten: ["500gr rode kool", "1 kleine bloemkool", "olie", "4el sojasaus", "8-10 bosuien", "2 tenen knoflook", "600gr kant-en-klare udonnoedels", "1tl kerriepoeder", "2el mirin", "2el limoensap", "20gr ingelegde gember", "sesamzaad"],
     techniek: 'recept',
-    moestuinlabel: ["rode-kool", "bloemkool"],
+    moestuinlabel: ["rodekool", "bloemkool"],
     bereiding: "Zie kookboek 'Azië' van Meera Sodha pg. 88-89."
 },
 {
@@ -31,7 +31,7 @@ export const basisBereidingen = [
     titel: 'Koolsla met sperziebonen en sesam',
     ingredienten: ["30gr sesamzaad", "150gr sperziebonen", "1/2e witte kool (400gr)", "1 ajuin", "2 citroenen", "2 tomaten", "1 bosje koriander", "3el olijfolie", "peper & zout"],
     techniek: 'recept',
-    moestuinlabel: ["sperzieboon", "witte-kool", "ajuin", "tomaat"],
+    moestuinlabel: ["sperzieboon", "wittekool", "ajuin", "tomaat"],
     bereiding: "Zie kookboek 'Grieks! Recepten voor elke dag' van Georgina Hayden pg. 198-199."
 },
 {
@@ -41,7 +41,13 @@ export const basisBereidingen = [
     moestuinlabel: ["tomaat", "sjalot"],
     bereiding: "Zie kookboek 'Simpel' van Ottolenghi pg. 34-35."
 },
-
+{
+    titel: 'Tomaten, snijbiet en spinazie met greoosterde amandelen',
+    ingredienten: ["50gr geschaafde amandelen", "1/2 tl paprikapoeder", "1+1/2 tl karwijzaad", "60ml olijfolie", "800gr romatomaten", "500gr snijbiet", "130gr spinazie", "2 limoenen", "35gr munt", "35gr dille", "8bosuien", "zout"],
+    techniek: 'recept',
+    moestuinlabel: ["tomaat", "snijbiet", "spinazie"],
+    bereiding: "Zie kookboek 'Simpel' van Ottolenghi pg. 72-73."
+}
 ]; 
 
 
