@@ -31,14 +31,11 @@ function maakTechniekenLijst() {
 }
 
 const labels=document.querySelectorAll('input[name=labels]');
-console.log(labels);
 labels.forEach((label)=>{
     label.addEventListener('change', () =>{
         bereidingenSectie.dispatchEvent(update);
     });
 });
-
-// document.querySelector('#aantalingredienten').innerText += /* return van functie vindMinsteIngredienten*/ .length; 
 
 function vindMinsteIngredienten() {
     let minsteIngredienten = bereidingen[0];
@@ -49,14 +46,13 @@ function vindMinsteIngredienten() {
         }
          });
     return minsteIngredienten;
-} 
+};
 
 function toonMinsteIngredienten() {
     const minsteIngr = vindMinsteIngredienten();
-    console.log(minsteIngr);
 
-    document.querySelector('#aantalingredienten').innerText += `${minsteIngr.titel} (${minsteIngr.ingredienten.length})`
-}
+    document.querySelector('#aantalingredienten').innerText = `Bereiding met het minste aantal ingrediënten: ${minsteIngr.titel}, ${minsteIngr.ingredienten.length} ingrediënt(en)`
+};
 
 /*Zoek meeste moestuinlabels (gedeelte alle bereidingen+zoekfunctie nog refactoren in een hulpfunctie? dry > hieronder idem stuk code)*/
 /*ook nog  aanpassen naar aangevinkte labels ipv totaal labels)*/
@@ -79,7 +75,7 @@ function vindMeesteMoestuinlabels() {
 };
 function toonMeesteLabels() {
     const besteMatch =vindMeesteMoestuinlabels();
-    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel} (${besteMatch.moestuinlabel.length} moestuinlabels)`;
+    document.querySelector('#moestuinmatch').innerText = `Bereiding met het meeste moestuingroenten: ${besteMatch.titel}, ${besteMatch.moestuinlabel.length} moestuinlabel(s)`;
 };
 
 
@@ -125,8 +121,7 @@ bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 
 bereidingen.forEach(voegBereidingToe);
 
-/*basisBereidingen.forEach(voegBereidingToe);
-toegevoegdeBereidingen.forEach(voegBereidingToe);*/
+
 
 function toonBereidingen() {
     const geselecteerdeTechnieken = maakTechniekenLijst();
@@ -134,9 +129,7 @@ function toonBereidingen() {
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
     bereidingenSectie.innerHTML = '';
 
-  // const alleBereidingen = lijstAlleBereidingen();
-   
-
+ 
     bereidingen.forEach((her)=> {
         if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
             voegBereidingToe(her);
