@@ -62,11 +62,11 @@ function alleFilters (her) {
 
 /*minste ingredienten*/
 function vindMinsteIngredienten() {
-    let minsteIngredienten = {ingredienten: []};
+    let minsteIngredienten = null;
 console.log(minsteIngredienten);
     bereidingen.forEach((ber)=>{
         if (alleFilters(ber)){
-        if (ber.ingredienten.length < minsteIngredienten.ingredienten.length) {
+        if (minsteIngredienten === null || ber.ingredienten.length < minsteIngredienten.ingredienten.length) {
         minsteIngredienten = ber;
         }
         
@@ -77,7 +77,11 @@ console.log(minsteIngredienten);
 function toonMinsteIngredienten() {
     const minsteIngr = vindMinsteIngredienten();
     console.log(minsteIngr);
+    if(minsteIngr === null){
+        document.querySelector('#aantalingredienten').innerText =  `Bereiding met het minste aantal ingrediënten: geen resultaat, pas de filter aan.`
+    }else{
     document.querySelector('#aantalingredienten').innerText = `Bereiding met het minste aantal ingrediënten: ${minsteIngr.titel}, ${minsteIngr.ingredienten.length} ingrediënt(en)`
+    }
 };
 
 /*Zoek meeste moestuinlabels */
@@ -170,15 +174,23 @@ function toonBereidingen() {
 
     });
 
-    //bereidingenSectie.addEventListener('bereidingenUpdate', JSON.parse(localStorage.getItem('opgeslagenBereidingen')));
 
-    
+
     bereidingenSectie.addEventListener('bereidingenUpdate', () => {
     toonBereidingen();
     toonMeesteLabels();
     toonMinsteIngredienten();
     
 });
+   /* clickEvent inkopen */
+const boodschap=document.querySelectorAll('section.bereidingen article ul.ingredientenlijst li');
+console.log(boodschap);
 
+    boodschap.forEach(ingredient => {
+        ingredient.addEventListener('click', () => {
+        document.querySelector('article#inkopen').innerHTML = `<p>test ${ingredient.value}</p>`;
+    }); 
+    }
+); 
 
  
