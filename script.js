@@ -85,34 +85,42 @@ function vindMeesteMoestuinlabels() {
     let meesteML = {moestuinlabel: []};
     console.log(meesteML);
     let vergelijkPunt = 0;
+    let geenLabels = 0;
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
  
     bereidingen.forEach((her)=> {
-        if(alleFilters) 
+        if(alleFilters(her)) 
             {
             const overeenkomst = her.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
     
-
-            if (overeenkomst.length > vergelijkPunt) 
+            if (overeenkomst.length === vergelijkPunt){geenLabels= -1}
+            if(overeenkomst.length > vergelijkPunt) 
                 {   vergelijkPunt = overeenkomst.length;
                     meesteML=her;
                 }
             }
         });
         return meesteML;
+        
+        
 };
 function toonMeesteLabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const besteMatch =vindMeesteMoestuinlabels();
+
+    const geenML = besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
+
     console.log(besteMatch);
-
+    console.log(geenML);
     
-
     if (geselecteerdeMoestuinlabels.length === 0){
-        document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: selecteer minstens 1 moestuinlabel.';
+        document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: selecteer minstens 1 moestuinlabel.';}
+        else{
+    if (geenML.length === 0 ){
+            document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: er zijn geen recepten of bewaartechnieken met dit moestuinlabel.';
+    }else{
+    document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}`;
     }
-    else{
-    document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}.`;
     }
 };
 
