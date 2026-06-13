@@ -56,7 +56,10 @@ function alleFilters (her) {
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
     console.log(zoekVeld);
 
-    return ((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))
+    return (
+        (her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) 
+        && geselecteerdeTechnieken.includes(her.techniek) 
+        && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))
     );
 }
 
@@ -81,17 +84,20 @@ function toonMinsteIngredienten() {
 /*Zoek meeste moestuinlabels (gedeelte alle bereidingen+zoekfunctie nog refactoren in een hulpfunctie? dry > hieronder idem stuk code)*/
 /*ook nog  aanpassen naar aangevinkte labels ipv totaal labels)*/
 function vindMeesteMoestuinlabels() {
-    const geselecteerdeTechnieken = maakTechniekenLijst();
-    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
-    const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
 
     let meesteML = {moestuinlabel: []};
     console.log(meesteML);
+    let vergelijkPunt = 0;
+    
  
     bereidingen.forEach((her)=> {
-        if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
+        if(alleFilters) 
             {
-                if (her.moestuinlabel.length > meesteML.moestuinlabel.length) {
+            const overeenkomst = her.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
+            console.log(overeenkomst);
+
+            if (overeenkomst.length > vergelijkPunt.length) 
+                {   vergelijkPunt = overeenkomst.length;
                     meesteML=her;
                 }
             }
