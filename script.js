@@ -105,7 +105,15 @@ function toonMeesteLabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const besteMatch =vindMeesteMoestuinlabels();
     console.log(besteMatch);
+
+    
+
+    if (geselecteerdeMoestuinlabels.length === 0){
+        document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: selecteer minstens 1 moestuinlabel.';
+    }
+    else{
     document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}.`;
+    }
 };
 
 
