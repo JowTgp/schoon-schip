@@ -37,6 +37,30 @@ labels.forEach((label)=>{
     });
 });
 
+function maakMoestuinlabelsLijst() {
+    const alleMoestuinlabels = []
+    labels.forEach((label) => {
+        if (label.checked){
+            alleMoestuinlabels.push(label.value);
+        }
+    });
+    return alleMoestuinlabels;
+}
+
+/*hulpfunctie filter*/
+function alleFilters (her) {
+    const geselecteerdeTechnieken = maakTechniekenLijst();
+    console.log(geselecteerdeTechnieken);
+    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
+    console.log(geselecteerdeMoestuinlabels);
+    const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
+    console.log(zoekVeld);
+
+    return ((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))
+    );
+}
+
+
 function vindMinsteIngredienten() {
     let minsteIngredienten = bereidingen[0];
 
@@ -62,6 +86,7 @@ function vindMeesteMoestuinlabels() {
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
 
     let meesteML = {moestuinlabel: []};
+    console.log(meesteML);
  
     bereidingen.forEach((her)=> {
         if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) 
@@ -79,22 +104,12 @@ function toonMeesteLabels() {
 };
 
 
-function maakMoestuinlabelsLijst() {
-    const alleMoestuinlabels = []
-    labels.forEach((label) => {
-        if (label.checked){
-            alleMoestuinlabels.push(label.value);
-        }
-    });
-    return alleMoestuinlabels;
-}
+
 /*einde meeste moestuinlabels*/
 
 
 function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
-
-console.log(ter);
 
 let checkLink;
 if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
@@ -124,14 +139,10 @@ bereidingen.forEach(voegBereidingToe);
 
 
 function toonBereidingen() {
-    const geselecteerdeTechnieken = maakTechniekenLijst();
-    const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
-    const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
     bereidingenSectie.innerHTML = '';
-
  
     bereidingen.forEach((her)=> {
-        if((her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) && geselecteerdeTechnieken.includes(her.techniek) && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))) {
+        if(alleFilters(her)) {
             voegBereidingToe(her);
         }
         });
