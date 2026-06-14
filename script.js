@@ -12,23 +12,12 @@ const bereidingenSectie = document.querySelector('section.bereidingen');
 const update = new CustomEvent('bereidingenUpdate');
 
 
-
 const checkboxes=document.querySelectorAll('input[name=techniek]');
 checkboxes.forEach((checkbox)=>{
     checkbox.addEventListener('change', () => {
         bereidingenSectie.dispatchEvent(update);
     });
 });
-
-function maakTechniekenLijst() {
-    const alleTechnieken = []
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked){
-            alleTechnieken.push(checkbox.value);
-        }
-    });
-    return alleTechnieken;
-}
 
 const labels=document.querySelectorAll('input[name=labels]');
 labels.forEach((label)=>{
@@ -37,33 +26,29 @@ labels.forEach((label)=>{
     });
 });
 
-function maakMoestuinlabelsLijst() {
-    const alleMoestuinlabels = []
-    labels.forEach((label) => {
-        if (label.checked){
-            alleMoestuinlabels.push(label.value);
-        }
-    });
-    return alleMoestuinlabels;
-}
+bereidingenSectie.addEventListener('bereidingenUpdate', () => {
+    toonBereidingen();
+    toonMeesteLabels();
+    toonMinsteIngredienten();
+});
 
 /*hulpfunctie filter*/
-function alleFilters (her) {
+function alleFilters (ber) {
     const geselecteerdeTechnieken = maakTechniekenLijst();
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const zoekVeld = document.querySelector('form.zoektekst>input').value.toLowerCase();
 
     return (
-        (her.bereiding.toLowerCase().includes(zoekVeld) || her.titel.toLowerCase().includes(zoekVeld)) 
-        && geselecteerdeTechnieken.includes(her.techniek) 
-        && (geselecteerdeMoestuinlabels.length === 0 || her.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))
+        (ber.bereiding.toLowerCase().includes(zoekVeld) || ber.titel.toLowerCase().includes(zoekVeld)) 
+        && geselecteerdeTechnieken.includes(ber.techniek) 
+        && (geselecteerdeMoestuinlabels.length === 0 || ber.moestuinlabel.some(label => geselecteerdeMoestuinlabels.includes(label)))
     );
 }
 
 /*minste ingredienten*/
 function vindMinsteIngredienten() {
     let minsteIngredienten = null;
-console.log(minsteIngredienten);
+
     bereidingen.forEach((ber)=>{
         if (alleFilters(ber)){
         if (minsteIngredienten === null || ber.ingredienten.length < minsteIngredienten.ingredienten.length) {
@@ -76,7 +61,7 @@ console.log(minsteIngredienten);
 
 function toonMinsteIngredienten() {
     const minsteIngr = vindMinsteIngredienten();
-    console.log(minsteIngr);
+    
     if(minsteIngr === null){
         document.querySelector('#aantalingredienten').innerText =  `Bereiding met het minste aantal ingrediënten: geen resultaat, pas de filter aan.`
     }else{
@@ -87,18 +72,18 @@ function toonMinsteIngredienten() {
 /*Zoek meeste moestuinlabels */
 function vindMeesteMoestuinlabels() {
 
-    let meesteML = {moestuinlabel: []};
+    let meesteML = null;
     let vergelijkPunt = 0;
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
  
-    bereidingen.forEach((her)=> {
-        if(alleFilters(her)) 
+    bereidingen.forEach((ber)=> {
+        if(alleFilters(ber)) 
             {
-            const overeenkomst = her.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
+            const overeenkomst = ber.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
     
             if(overeenkomst.length > vergelijkPunt) 
                 {   vergelijkPunt = overeenkomst.length;
-                    meesteML=her;
+                    meesteML=ber;
                 }
             }
         });
@@ -109,23 +94,17 @@ function vindMeesteMoestuinlabels() {
 function toonMeesteLabels() {
     const geselecteerdeMoestuinlabels = maakMoestuinlabelsLijst();
     const besteMatch =vindMeesteMoestuinlabels();
-
-    const geenML = besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label));
-
-    console.log(besteMatch);
-    console.log(geenML);
     
     if (geselecteerdeMoestuinlabels.length === 0){
         document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: selecteer minstens 1 moestuinlabel.';}
         else{
-    if (geenML.length === 0 ){
+    if (besteMatch === null){
             document.querySelector('#moestuinmatch').innerText = 'Beste moestuinmatch: er zijn geen recepten of bewaartechnieken met dit moestuinlabel.';
     }else{
     document.querySelector('#moestuinmatch').innerText = `Beste moestuinmatch: ${besteMatch.titel} heeft ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).length} moestuinlabel(s) die overeen komen, nl: ${besteMatch.moestuinlabel.filter(label => geselecteerdeMoestuinlabels.includes(label)).join(", ")}`;
     }
     }
 };
-//nog value omzetten naar inhoud span? bvb met .map? Zodat koppeltekens weg;
 
 /*einde meeste moestuinlabels*/
 
@@ -134,7 +113,7 @@ function voegBereidingToe(ter) {
 const oogstVerwerking = document.createElement('article');
 
 let checkLink;
-if (ter.bereiding.startsWith("http")||ter.bereiding.includes(".be")||ter.bereiding.includes(".nl")||ter.bereiding.includes(".com")) {
+if (ter.bereiding.startsWith("http")) {
     checkLink = `<a href="${ter.bereiding}">${ter.bereiding}</a>`;
     }else{
         checkLink = ter.bereiding;
@@ -155,17 +134,36 @@ oogstVerwerking.innerHTML =`
 
 bereidingenSectie.insertAdjacentElement("afterbegin", oogstVerwerking);
 };
-
 bereidingen.forEach(voegBereidingToe);
+toonMeesteLabels();
+toonMinsteIngredienten();
 
+function maakTechniekenLijst() {
+    const alleTechnieken = []
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked){
+            alleTechnieken.push(checkbox.value);
+        }
+    });
+    return alleTechnieken;
+}
 
+function maakMoestuinlabelsLijst() {
+    const alleMoestuinlabels = []
+    labels.forEach((label) => {
+        if (label.checked){
+            alleMoestuinlabels.push(label.value);
+        }
+    });
+    return alleMoestuinlabels;
+}
 
 function toonBereidingen() {
     bereidingenSectie.innerHTML = '';
  
-    bereidingen.forEach((her)=> {
-        if(alleFilters(her)) {
-            voegBereidingToe(her);
+    bereidingen.forEach((ber)=> {
+        if(alleFilters(ber)) {
+            voegBereidingToe(ber);
         }
         });
     };
@@ -174,23 +172,15 @@ function toonBereidingen() {
 
     });
 
-
-
-    bereidingenSectie.addEventListener('bereidingenUpdate', () => {
-    toonBereidingen();
-    toonMeesteLabels();
-    toonMinsteIngredienten();
-    
-});
    /* clickEvent inkopen */
-const boodschap=document.querySelectorAll('section.bereidingen article ul.ingredientenlijst li');
+
+
+/* const boodschap=document.querySelectorAll('section.bereidingen article ul.ingredientenlijst li');
 console.log(boodschap);
 
     boodschap.forEach(ingredient => {
         ingredient.addEventListener('click', () => {
-        document.querySelector('article#inkopen').innerHTML = `<p>test ${ingredient.value}</p>`;
+        document.querySelector('article#inkopen').innerHTML += `<p>test ${ingredient.innerText}</p>`;
     }); 
     }
-); 
-
- 
+);  of .getElementsByTagName('li') + .matches*/
