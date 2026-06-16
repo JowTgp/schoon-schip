@@ -24,12 +24,13 @@ knop.addEventListener('click', () => {
    
 document.querySelector('form.add').addEventListener('submit', (event) => {
     event.preventDefault();   
-    //om default van browser bij submit uit te schakelen, zie js info > events > browser default actions -> zelf actie in js gedefineerd dus default mag weg. Hier laten staan (voor const arrayMoestuinlabel), anders voegen moestuin labels zich niet toe als classes.
+    //om default van browser bij submit uit te schakelen, zie js info > events > browser default actions -> zelf actie in js gedefineerd dus default mag weg. Hier laten staan (voor const arrayMoestuinlabel)
 
     const arrayMoestuinlabel=[...document.querySelectorAll(`.moestuinlabel input:checked`)].map(input => input.value);
     console.log(arrayMoestuinlabel);
 
     console.log(document.querySelectorAll('.moestuinlabel input:checked'));
+
 
     const alleIngredienten = document.querySelectorAll('input[name="ingredient"]');
 

@@ -167,20 +167,14 @@ function toonBereidingen() {
         }
         });
     };
+
+    document.querySelector('form.zoektekst').addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
+
     document.querySelector('form.zoektekst>input').addEventListener('input', () => {
     bereidingenSectie.dispatchEvent(update);
 
     });
 
-   /* clickEvent inkopen */
-
-
-/* const boodschap=document.querySelectorAll('section.bereidingen article ul.ingredientenlijst li');
-console.log(boodschap);
-
-    boodschap.forEach(ingredient => {
-        ingredient.addEventListener('click', () => {
-        document.querySelector('article#inkopen').innerHTML += `<p>test ${ingredient.innerText}</p>`;
-    }); 
-    }
-);  of .getElementsByTagName('li') + .matches*/
+   
