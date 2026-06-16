@@ -10,13 +10,13 @@ let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [
 //ingredienten
 const knop = document.querySelector('#voegingrtoe');
 const lijst = document.querySelector('#lijstingredienten');
-
-knop.addEventListener("click", () => {
-    const nieuwingr = document.createElement("input");
-
-    nieuwingr.type="text";
-    nieuwingr.name="ingredient";
-    nieuwingr.classList.add("ingredienten");
+console.log(lijst);
+knop.addEventListener('click', () => {
+    const nieuwingr = document.createElement('input');
+    
+    nieuwingr.type='text';
+    nieuwingr.name='ingredient';
+    nieuwingr.classList.add('ingredienten');
 
     lijst.appendChild(nieuwingr);
 
@@ -28,6 +28,7 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
 
     const arrayMoestuinlabel=[...document.querySelectorAll(`.moestuinlabel input:checked`)].map(input => input.value);
     console.log(arrayMoestuinlabel);
+
     console.log(document.querySelectorAll('.moestuinlabel input:checked'));
 
     const alleIngredienten = document.querySelectorAll('input[name="ingredient"]');
@@ -52,15 +53,13 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
 
         });
 
-
-
-        function voegToe (nieuweBereiding) {
-
-                if (nieuweBereiding.titel && nieuweBereiding.ingredienten.length>0 && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel.length>0) {
+function voegToe (nieuweBereiding) {
+    console.log(nieuweBereiding)
+    if (nieuweBereiding.titel && nieuweBereiding.ingredienten.length>0 && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel.length>0) {
         const alleTitels = []                          //bij arrays .length>0 want anders truthy en dan ook ok als het leeg is: zie ook toegevoegd object in console
         bereidingen.forEach((ber) => {alleTitels.push(ber.titel);});
         
-        if (!alleTitels.includes(nieuweBereiding.titel)) {
+    if (!alleTitels.includes(nieuweBereiding.titel)) {
             bereidingen.push(nieuweBereiding);
             toonMelding('succes', 'Succesvol toegevoegd!');
             console.log(alleTitels);
@@ -72,7 +71,6 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
     }    
     localStorage.setItem('opgeslagenBereidingen', JSON.stringify(bereidingen));        
     };
-
 
     function toonMelding (soort, melding){
         document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
