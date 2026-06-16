@@ -173,7 +173,7 @@ function toonBereidingen() {
     });
 
     document.querySelector('form.zoektekst>input').addEventListener('input', () => {
-    bereidingenSectie.dispatchEvent(update);
+    bereidingenSectie.dispatchEvent(update); 
 
     });
 

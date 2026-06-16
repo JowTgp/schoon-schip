@@ -10,7 +10,7 @@ let bereidingen = JSON.parse(localStorage.getItem('opgeslagenBereidingen')) || [
 //ingredienten
 const knop = document.querySelector('#voegingrtoe');
 const lijst = document.querySelector('#lijstingredienten');
-console.log(lijst);
+
 knop.addEventListener('click', () => {
     const nieuwingr = document.createElement('input');
     
@@ -27,11 +27,7 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
     //om default van browser bij submit uit te schakelen, zie js info > events > browser default actions -> zelf actie in js gedefineerd dus default mag weg. Hier laten staan (voor const arrayMoestuinlabel)
 
     const arrayMoestuinlabel=[...document.querySelectorAll(`.moestuinlabel input:checked`)].map(input => input.value);
-    console.log(arrayMoestuinlabel);
-
-    console.log(document.querySelectorAll('.moestuinlabel input:checked'));
-
-
+   
     const alleIngredienten = document.querySelectorAll('input[name="ingredient"]');
 
     const arrayIngredienten = [];
@@ -55,7 +51,7 @@ document.querySelector('form.add').addEventListener('submit', (event) => {
         });
 
 function voegToe (nieuweBereiding) {
-    console.log(nieuweBereiding)
+    
     if (nieuweBereiding.titel && nieuweBereiding.ingredienten.length>0 && nieuweBereiding.techniek && nieuweBereiding.bereiding && nieuweBereiding.moestuinlabel.length>0) {
         const alleTitels = []                          //bij arrays .length>0 want anders truthy en dan ook ok als het leeg is: zie ook toegevoegd object in console
         bereidingen.forEach((ber) => {alleTitels.push(ber.titel);});
@@ -63,7 +59,7 @@ function voegToe (nieuweBereiding) {
     if (!alleTitels.includes(nieuweBereiding.titel)) {
             bereidingen.push(nieuweBereiding);
             toonMelding('succes', 'Succesvol toegevoegd!');
-            console.log(alleTitels);
+            
         } else {
             toonMelding('fout', 'Titel bestaat al.');
         }
@@ -77,7 +73,7 @@ function voegToe (nieuweBereiding) {
         document.querySelector('#feedback').innerHTML = `<p class=${soort}>${melding}</p>`;
     }
    
-  console.log(bereidingen);
+  
   
 
 
