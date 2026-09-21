@@ -19,6 +19,7 @@ body{
     color: var(--tekstkleur);
     font-family: 'SN Pro', serif;
     font-size: 1.1rem;
+    overflow-x: hidden;
 }
 
 h1{
