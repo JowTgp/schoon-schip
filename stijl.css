@@ -125,6 +125,7 @@ input[type=checkbox], input[type=radio]{
   border-radius: var(--afronding);
   margin-bottom: 1em;
   box-shadow: 0 0 3px #999;
+  max-width
 }
 
 article{
