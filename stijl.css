@@ -62,7 +62,7 @@ header img {
 h2{
   margin-bottom: 0.7rem;
   margin-right: 40px; /* want width icoon is 38px plus 2px zodat geen overlap*/
-  color: blueviolet;
+
 }
 
 nav ul {
@@ -197,7 +197,7 @@ background-image: url("img/conserve.svg");
 section.bereidingen{
   display: grid;
   gap: 1em;
-  grid-template-columns: 1fr;
+  grid-template-columns:  minmax(0, 1fr);
 }
 
 button#voegingrtoe, input[type=submit]{
@@ -246,7 +246,7 @@ p.fout{
 
 @media(min-width: 776px) {
   section.bereidingen{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
   .moestuingroenten span:hover{
     background-color:var(--kleuraccent1);
